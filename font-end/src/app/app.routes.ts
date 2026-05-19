@@ -19,8 +19,8 @@ export const routes: Routes = [
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
           { path: 'dashboard', component: DashboardComponent },
           { path: 'user-management', component: UserManagementComponent},
-          { path: 'original-resources', component: OriginalResourcesComponent},
-          { path: 'embed', component: EmbedComponent},
+          { path: 'test', component: OriginalResourcesComponent},
+          { path: 'original-resources', component: EmbedComponent},
           { path: 'tracing', component: TracingComponent}
         ]
     },

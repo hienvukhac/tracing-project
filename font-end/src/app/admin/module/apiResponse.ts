@@ -15,10 +15,10 @@ export interface ApiResponse<T>{
   }
 
   export interface ImageResponse {
-    id: string;          // UUID từ backend dạng chuỗi
-    fileName: string;    // Khớp với file_name
-    filePath: string;    // Khớp với file_path (đường dẫn ảnh)
+    id: string; 
+    fileName: string;
+    filePath: string;  
     imageUrl?: string;
-    phash: string;       // Chuỗi băm nhận diện ảnh tương đồng
-    createdAt: string;   // Khớp với created_at (Dạng ISO string từ backend trả về)
+    phash: string;    
+    createdAt: string; 
   }
