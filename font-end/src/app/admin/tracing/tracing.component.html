@@ -1,0 +1,107 @@
+<div class="background-glow"></div>
+<div class="trace-page">
+  <div class="trace-card">
+    <div class="header">
+      <div class="logo-circle">
+        🔍
+      </div>
+      <h1>Traitor Tracing System</h1>
+      <p>
+        Upload leaked image to identify suspicious user
+      </p>
+    </div>
+    <div class="upload-section">
+      <label class="upload-box">
+        <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden>
+        <div class="upload-content">
+          <div class="upload-icon">
+            ⬆
+          </div>
+          <p *ngIf="!selectedFile">
+            Click or drag leaked image here
+          </p>
+          <p *ngIf="selectedFile" class="selected-file">
+            {{ selectedFile.name }}
+          </p>
+        </div>
+      </label>
+
+      <button class="trace-btn" (click)="traceImage()" [disabled]="loading">
+
+        <span *ngIf="!loading">
+          TRACE IMAGE
+        </span>
+
+        <span *ngIf="loading" class="loader"></span>
+
+      </button>
+    </div>
+    <div *ngIf="notification" class="notification" [ngClass]="notificationType">
+      {{ notification }}
+    </div>
+
+    <div class="result-panel animate-result" *ngIf="result">
+      <div class="result-header">
+        <h2>
+          Trace Result
+        </h2>
+
+        <div class="status-badge" [ngClass]="{
+            found: result.status === 'FOUND',
+            notfound: result.status === 'NOT_FOUND'
+            }">
+          {{ result.status }}
+        </div>
+      </div>
+
+      <div class="suspect-card" *ngIf="result.status === 'FOUND'">
+        <div class="suspect-avatar">
+          👤
+        </div>
+        <div class="suspect-info">
+          <h3>
+            {{ result.suspect_username }}
+          </h3>
+
+          <p> Suspect ID: {{ result.suspect_id }}</p>
+        </div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric-box">
+          <span class="metric-label">
+            Confidence
+          </span>
+
+          <span class="metric-value">
+            {{ result.confidence | percent:'1.0-2' }}
+          </span>
+        </div>
+
+        <div class="metric-box">
+
+          <span class="metric-label"> Downloads </span>
+          <span class="metric-value">{{ result.download_count || 0 }} </span>
+
+        </div>
+      </div>
+
+      <div class="last-download" *ngIf="result.last_download_at">
+        <strong> Last Download: </strong>
+
+        {{ result.last_download_at | date: 'dd/MM/yyyy HH:mm:ss' }}
+
+      </div>
+
+      <div class="fingerprint-section">
+        <h3>Extracted Fingerprint</h3>
+
+        <textarea readonly> {{ result.extracted_fingerprint }}</textarea>
+      </div>
+
+      <div class="message-box" *ngIf="result.message">
+        {{ result.message }}
+      </div>
+    </div>
+  </div>
+</div>
