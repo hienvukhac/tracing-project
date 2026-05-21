@@ -63,13 +63,10 @@ export class UserDashboardComponent implements OnInit {
 
     this.integrationService.downloadImage(imageId).subscribe({
       next: (blob: Blob) => {
-  
         const url = window.URL.createObjectURL(blob);
-  
         const a = document.createElement('a');
-  
         a.href = url;
-  
+
         // tên file khi lưu
         a.download = 'secure_' + fileName;
   
@@ -92,7 +89,7 @@ export class UserDashboardComponent implements OnInit {
   logout() {
     const comfirmLogout = confirm("Bạn có chắc muốn đăng xuất!")
     if (comfirmLogout) {
-      alert("Đăng xuất thành côngcông")
+      alert("Đăng xuất thành công")
       this.userService.logout();
       this.router.navigate(['/login']);
     }

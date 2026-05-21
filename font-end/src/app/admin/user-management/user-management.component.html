@@ -92,14 +92,14 @@
             </div>
 
             <div class="form-group">
-                <input type="text" placeholder="Fingerprint_bits" formControlName="fingerprint_bits">
+                <input type="text" placeholder="role" formControlName="role">
                 <small class="error"
-                    *ngIf="registerForm.get('fingerprint_bits')?.touched && registerForm.get('fingerprint_bits')?.errors?.['required']">
+                    *ngIf="registerForm.get('role')?.touched && registerForm.get('role')?.errors?.['required']">
                     Fingerprint_bits không được để trống
                 </small>
 
                 <small class="error"
-                    *ngIf="(registerForm.get('fingerprint_bits')?.touched || registerForm.get('fingerprint_bits')?.dirty) && registerForm.get('username')?.hasError('minlength')">
+                    *ngIf="(registerForm.get('role')?.touched || registerForm.get('role')?.dirty) && registerForm.get('username')?.hasError('minlength')">
                     Fingerprint_bits phải lớn hơn 8 ký tự
                 </small>
             </div>

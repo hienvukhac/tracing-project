@@ -23,12 +23,15 @@ export class UserManagementComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(4)]],
       name: ['', [Validators.required]],
       password_hash: ['', [Validators.required, Validators.minLength(8)]],
-      fingerprint_bits:['', [Validators.required, Validators.minLength(8)]],
       role:['USER']
     })
   }
 
   ngOnInit(): void {
+    this.loadUser();
+  }
+
+  loadUser(){
     this.userService.getUsers().subscribe({
       next: (data) => {
         this.users = data.result?.filter(user => user.role == "USER") || [];
@@ -45,7 +48,7 @@ export class UserManagementComponent implements OnInit {
 
     const user = this.registerForm.value;
     this.userService.createUser(user).subscribe({
-      next: (res: ApiResponse<User>) => {
+      next: (res) => {
         if (res.code === 1000) {
           alert('Đăng ký User thành công');
           this.registerForm.reset();
